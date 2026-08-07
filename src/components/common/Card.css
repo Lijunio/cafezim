@@ -1,0 +1,46 @@
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-padded {
+  padding: var(--space-md);
+}
+
+.card-clickable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card-clickable:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-clickable:active {
+  transform: scale(0.98);
+}
+
+/* Variants */
+.card-warm {
+  background-color: var(--color-card-alt);
+  border: 1px solid var(--color-border-light);
+}
+
+.card-outlined {
+  background-color: transparent;
+  border: 1.5px solid var(--color-border);
+  box-shadow: none;
+}
+
+.card-gradient {
+  color: var(--color-text-inverse);
+}
+
+.card-sage {
+  background-color: var(--color-sage-light);
+  border: 1px solid var(--color-sage);
+}

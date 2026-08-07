@@ -1,0 +1,64 @@
+/* ===== Cafezim Design System ===== */
+/* Warm coffeehouse palette */
+
+:root {
+  /* Primary colors */
+  --color-primary: #E07B4C;
+  --color-primary-light: #F0C4A0;
+  --color-primary-dark: #C4693F;
+  --color-primary-hover: #D4743F;
+
+  /* Secondary / accent */
+  --color-sage: #9CAF94;
+  --color-sage-light: #C5D8BF;
+  --color-sage-dark: #7A8F72;
+
+  /* Neutrals */
+  --color-bg: #FBF7F2;
+  --color-bg-warm: #F5EDE4;
+  --color-card: #FFFFFF;
+  --color-card-alt: #FDF8F3;
+
+  /* Text */
+  --color-text: #4A3728;
+  --color-text-light: #8B7E74;
+  --color-text-muted: #B0A49A;
+  --color-text-inverse: #FFFFFF;
+
+  /* Status */
+  --color-checked: #A3B89F;
+  --color-checked-bg: #E8F0E6;
+  --color-pending: #E8D5C4;
+  --color-pending-text: #B8956E;
+
+  /* Borders & shadows */
+  --color-border: #E8E0D5;
+  --color-border-light: #F0EAE2;
+  --shadow-sm: 0 1px 3px rgba(74, 55, 40, 0.08);
+  --shadow-md: 0 4px 12px rgba(74, 55, 40, 0.10);
+  --shadow-lg: 0 8px 24px rgba(74, 55, 40, 0.12);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Sizing */
+  --nav-height: 72px;
+  --header-height: 56px;
+  --max-width: 430px;
+}

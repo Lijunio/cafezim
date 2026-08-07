@@ -1,0 +1,348 @@
+.today-page {
+  padding: 0 var(--space-md);
+}
+
+/* Header */
+.today-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0 var(--space-xs);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-btn:hover {
+  background-color: var(--color-bg-warm);
+}
+
+.today-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.today-datetime {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-md);
+}
+
+/* Weather Card */
+.weather-card {
+  margin-bottom: var(--space-md);
+}
+
+.weather-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.weather-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.weather-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.weather-temp {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Location Card */
+.location-card {
+  margin-bottom: var(--space-md);
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.location-text {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* Notes Card */
+.notes-card {
+  margin-bottom: var(--space-lg);
+}
+
+.notes-text {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Check-in Section */
+.section {
+  margin-bottom: var(--space-lg);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.checkin-count {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.checkin-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.checkin-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 14px;
+  background-color: var(--color-card);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.checkin-item:active {
+  transform: scale(0.98);
+}
+
+.checkin-item.checked {
+  border-color: var(--color-checked);
+  background-color: var(--color-checked-bg);
+}
+
+.checkin-item.is-you {
+  background-color: #FDF0E8;
+}
+
+.checkin-item.is-you.checked {
+  background-color: var(--color-checked-bg);
+}
+
+/* Inline avatar (no Avatar component needed) */
+.checkin-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 17px;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.checkin-avatar-done {
+  box-shadow: 0 0 0 2.5px var(--color-checked);
+}
+
+.checkin-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkin-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.checkin-status {
+  font-size: 0.75rem;
+}
+
+.status-done {
+  color: var(--color-checked);
+}
+
+.status-tap {
+  color: var(--color-text-muted);
+}
+
+.checkin-check {
+  font-size: 1.125rem;
+  color: var(--color-checked);
+  font-weight: 700;
+}
+
+/* Memory Album */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+
+.memory-photo {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.memory-photo:active {
+  transform: scale(0.95);
+}
+
+.memory-photo-icon {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.memory-add-btn {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--color-border);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.memory-add-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Empty State */
+.empty-meetup-card {
+  margin: var(--space-lg) 0;
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  animation: slideUp 0.5s ease-out;
+}
+
+.empty-meetup-illustration {
+  margin-bottom: var(--space-md);
+}
+
+.empty-meetup-title {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-meetup-text {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+}
+
+/* Actions */
+.today-actions {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* Rating Form */
+.rating-form {
+  margin-bottom: var(--space-lg);
+  animation: slideUp 0.3s ease-out;
+}
+
+.rating-form-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.rating-row:last-of-type {
+  border-bottom: none;
+}
+
+.rating-row-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.rating-comment {
+  margin: var(--space-md) 0;
+}
+
+.rating-comment label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.rating-comment textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  background-color: var(--color-card);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.rating-comment textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.rating-comment textarea::placeholder {
+  color: var(--color-text-muted);
+}

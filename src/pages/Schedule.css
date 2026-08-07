@@ -1,0 +1,183 @@
+.schedule-page {
+  padding: 0 var(--space-md);
+}
+
+.schedule-page .page-title {
+  padding: var(--space-md) 0;
+}
+
+.schedule-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Form Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background-color: var(--color-card);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(224, 123, 76, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Invite Chips */
+.invite-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.invite-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background-color: var(--color-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.invite-chip.invited {
+  background-color: #FDF0E8;
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.invite-chip:active {
+  transform: scale(0.96);
+}
+
+.invite-chip-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: white;
+}
+
+/* Reminder Notice */
+.reminder-notice {
+  margin-bottom: var(--space-sm);
+}
+
+.reminder-content {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start;
+}
+
+.reminder-content svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.reminder-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  line-height: 1.5;
+}
+
+/* Invite Success */
+.invite-success-card {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  animation: slideUp 0.5s ease-out;
+}
+
+.invite-success-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.invite-success-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  margin: var(--space-sm) 0 var(--space-md);
+}
+
+.invite-link-box {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.invite-link-input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--color-primary-dark);
+  background-color: #FDF0E8;
+  outline: none;
+  cursor: pointer;
+}
+
+.invite-copy-btn {
+  padding: 12px 20px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.invite-copy-btn:active {
+  transform: scale(0.96);
+}
+
+.invite-actions {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}

@@ -1,0 +1,105 @@
+.invite-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  padding: var(--space-lg);
+}
+
+.invite-card {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  padding: var(--space-xl) var(--space-lg);
+  animation: slideUp 0.5s ease-out;
+}
+
+.invite-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.invite-card h2 {
+  font-family: var(--font-heading);
+  margin-bottom: var(--space-sm);
+}
+
+.invite-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-lg);
+}
+
+.invite-inviter {
+  font-size: 1rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.invite-meetup-info {
+  background-color: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.invite-meetup-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-xs);
+}
+
+.invite-date {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.invite-address {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+}
+
+.invite-notes {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  font-style: italic;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.invite-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.invite-logged-as {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.invite-disclaimer {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+
+.invite-login-prompt {
+  font-size: 0.9375rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.invite-btn-link {
+  text-decoration: none;
+}
+
+.invite-success {
+  border: 2px solid var(--color-sage);
+}

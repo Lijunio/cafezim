@@ -1,0 +1,4 @@
+.app-content {
+  min-height: calc(100vh - 48px - var(--nav-height) - 34px);
+  padding-bottom: calc(var(--nav-height) + 34px);
+}
