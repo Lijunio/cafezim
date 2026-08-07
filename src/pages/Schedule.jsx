@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { createMeetup, createInvitation } from '../lib/dataService';
+import { createMeetup, createInvitation, getFriends } from '../lib/dataService';
 import Button from '../components/common/Button';
 import Card from '../components/common/Card';
 import './Schedule.css';
@@ -19,6 +19,22 @@ export default function Schedule() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [inviteLink, setInviteLink] = useState('');
+  const [friends, setFriends] = useState([]);
+  const [selectedFriends, setSelectedFriends] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      getFriends(user.id).then(setFriends).catch(() => {});
+    }
+  }, [user]);
+
+  const toggleFriend = (friendId) => {
+    setSelectedFriends((prev) =>
+      prev.includes(friendId)
+        ? prev.filter((id) => id !== friendId)
+        : [...prev, friendId]
+    );
+  };
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -176,6 +192,35 @@ export default function Schedule() {
             onChange={(e) => handleChange('notes', e.target.value)}
             rows={3}
           />
+        </div>
+
+        {/* Friends selection */}
+        {friends.length > 0 && (
+          <div className="form-group">
+            <label>Quem vai tomar um cafezim com você?</label>
+            <div className="invite-chips">
+              {friends.map((friend) => (
+                <button
+                  key={friend.id}
+                  type="button"
+                  className={`invite-chip ${selectedFriends.includes(friend.id) ? 'invited' : ''}`}
+                  onClick={() => toggleFriend(friend.id)}
+                >
+                  <div className="invite-chip-avatar" style={{ backgroundColor: friend.color || '#E07B4C' }}>
+                    {friend.initial || friend.name?.charAt(0) || '?'}
+                  </div>
+                  <span>{friend.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Invite new friends */}
+        <div className="form-group">
+          <p className="invite-new-text">
+            Seu amigo ainda não faz parte da comunidade? Convide-o copiando o link após agendar.
+          </p>
         </div>
 
         {/* Reminder Notice */}

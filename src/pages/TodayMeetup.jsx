@@ -138,6 +138,9 @@ export default function TodayMeetup() {
   };
 
   const allRated = Object.keys(ratings).length >= 5;
+  const now = new Date();
+  const meetupDateTime = meetup ? new Date(meetup.date + 'T' + (meetup.time || '12:00')) : null;
+  const eventStarted = meetupDateTime && now >= meetupDateTime;
 
   const formatMeetupDate = () => {
     const date = new Date(meetup.date + 'T' + (meetup.time || '12:00'));
@@ -201,7 +204,7 @@ export default function TodayMeetup() {
               onClick={handleCheckIn}
             >
               <div className={`checkin-avatar ${isCheckedIn ? 'checkin-avatar-done' : ''}`} style={{ backgroundColor: '#E07B4C' }}>
-                {user.email?.charAt(0).toUpperCase() || '?'}
+                {profile?.initial || profile?.name?.charAt(0)?.toUpperCase() || '?'}
               </div>
               <div className="checkin-info">
                 <span className="checkin-name">{isCheckedIn ? 'Você' : 'Você'}</span>
@@ -245,11 +248,15 @@ export default function TodayMeetup() {
         </div>
       )}
 
-      {/* Rate Button */}
+      {/* Rate Button — only after event starts */}
       <div className="today-actions">
-        <Button variant="secondary" size="md" fullWidth onClick={() => setShowRating(!showRating)}>
-          {submitted ? '✓ Avaliação enviada' : 'Avaliar esta cafeteria'}
-        </Button>
+        {eventStarted ? (
+          <Button variant="secondary" size="md" fullWidth onClick={() => setShowRating(!showRating)}>
+            {submitted ? '✓ Avaliação enviada' : 'Avaliar esta cafeteria'}
+          </Button>
+        ) : (
+          <p className="rating-locked">⏳ Avaliação disponível após o café</p>
+        )}
       </div>
 
       {/* Rating Form */}

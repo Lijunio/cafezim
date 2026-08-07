@@ -276,6 +276,15 @@
   margin-bottom: var(--space-lg);
 }
 
+/* Rating locked */
+.rating-locked {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  padding: var(--space-md);
+  font-style: italic;
+}
+
 /* Actions */
 .today-actions {
   margin-top: var(--space-md);

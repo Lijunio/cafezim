@@ -99,6 +99,14 @@
   color: white;
 }
 
+.invite-new-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--space-sm) 0;
+}
+
 /* Reminder Notice */
 .reminder-notice {
   margin-bottom: var(--space-sm);

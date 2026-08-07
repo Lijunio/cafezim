@@ -12,19 +12,19 @@ export default function Home() {
   const [nextMeetup, setNextMeetup] = useState(null);
   const [checkins, setCheckins] = useState([]);
   const [profiles, setProfiles] = useState([]);
-  const [stats, setStats] = useState({ totalMeetups: 0, averageRating: 0, mostAttendances: null, favoriteSpot: null });
+  const [stats, setStats] = useState({ totalMeetups: 0, averageRating: 0, favoriteSpot: null, mostFrequented: null });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (user) loadData();
+  }, [user, profile]);
 
   async function loadData() {
     try {
       const [meetup, profilesData, statsData] = await Promise.all([
         getNextMeetup(),
         getAllProfiles(),
-        getStats(),
+        getStats(profile?.id || user?.id),
       ]);
       setNextMeetup(meetup);
       setProfiles(profilesData);
@@ -72,7 +72,7 @@ export default function Home() {
       <div className="home-header">
         <h1 className="home-brand">Cafezim</h1>
         <div className="home-user-badge">
-          <div className="avatar-placeholder">{profile?.initial || '?'}</div>
+          <div className="avatar-placeholder">{profile?.initial || profile?.name?.charAt(0)?.toUpperCase() || '?'}</div>
         </div>
       </div>
 
@@ -147,10 +147,10 @@ export default function Home() {
       {stats.totalMeetups > 0 ? (
         <Card className="stats-banner" variant="sage">
           <div className="stats-content">
-            <div className="stats-icon">🏆</div>
+            <div className="stats-icon">☕</div>
             <div className="stats-text">
-              <p className="stats-highlight">{stats.mostAttendances || 'Alguém'} foi a mais cafés</p>
-              <p className="stats-secondary">Cafeteria favorita: <strong>{stats.favoriteSpot || '—'}</strong></p>
+              <p className="stats-highlight">Melhor café: <strong>{stats.favoriteSpot || '—'}</strong></p>
+              <p className="stats-secondary">Mais frequentado: <strong>{stats.mostFrequented || '—'}</strong></p>
             </div>
           </div>
         </Card>
@@ -160,7 +160,7 @@ export default function Home() {
             <div className="stats-icon">🌱</div>
             <div className="stats-text">
               <p className="stats-highlight">Sua jornada de cafés começa aqui</p>
-              <p className="stats-secondary">Estatísticas e favoritos aparecerão após seu primeiro café</p>
+              <p className="stats-secondary">Estatísticas aparecerão após seu primeiro café</p>
             </div>
           </div>
         </Card>

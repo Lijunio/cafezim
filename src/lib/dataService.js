@@ -221,66 +221,70 @@ export async function uploadPhoto(meetupId, userId, file) {
   return data;
 }
 
-// ===== Stats =====
+// ===== Stats (pessoais do usuário) =====
 
-export async function getStats() {
+export async function getStats(userId) {
+  if (!userId) return { totalMeetups: 0, averageRating: 0, favoriteSpot: null, mostFrequented: null };
+
   try {
-    const { data: meetups, error: meetupsError } = await supabase
-      .from('meetups')
-      .select('id, venue');
+    // Total de cafés que o usuário foi (check-ins)
+    const { data: myCheckins } = await supabase
+      .from('checkins')
+      .select('meetup_id');
 
-    if (meetupsError) throw meetupsError;
+    const totalMeetups = myCheckins?.length || 0;
 
-    const totalMeetups = meetups?.length || 0;
+    // Média das avaliações que ele deu
+    const { data: myRatings } = await supabase
+      .from('ratings')
+      .select('coffee, food, atmosphere, service, value, meetup_id')
+      .eq('user_id', userId);
+
     let averageRating = 0;
     let favoriteSpot = null;
 
-    if (totalMeetups > 0) {
-      // Get all ratings
-      const { data: allRatings } = await supabase
-        .from('ratings')
-        .select('coffee, food, atmosphere, service, value, meetup_id');
+    if (myRatings && myRatings.length > 0) {
+      const allValues = myRatings.flatMap((r) =>
+        [r.coffee, r.food, r.atmosphere, r.service, r.value].filter(Boolean)
+      );
+      averageRating = allValues.length > 0
+        ? Math.round((allValues.reduce((a, b) => a + b, 0) / allValues.length) * 10) / 10
+        : 0;
 
-      if (allRatings && allRatings.length > 0) {
-        const allValues = allRatings.flatMap((r) =>
-          [r.coffee, r.food, r.atmosphere, r.service, r.value].filter(Boolean)
-        );
-        averageRating = allValues.length > 0
-          ? Math.round((allValues.reduce((a, b) => a + b, 0) / allValues.length) * 10) / 10
-          : 0;
-
-        // Find favorite spot (highest rated)
-        const meetupAvgs = {};
-        allRatings.forEach((r) => {
-          const vals = [r.coffee, r.food, r.atmosphere, r.service, r.value].filter(Boolean);
-          if (vals.length > 0) {
-            const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
-            meetupAvgs[r.meetup_id] = (meetupAvgs[r.meetup_id] || 0) + avg;
-          }
-        });
-        // Actually this isn't quite right for averaging. Let's keep it simple.
-        // Find the meetup with most ratings for now
-        const meetupRatingCounts = {};
-        allRatings.forEach((r) => {
-          meetupRatingCounts[r.meetup_id] = (meetupRatingCounts[r.meetup_id] || 0) + 1;
-        });
-        const bestId = Object.entries(meetupRatingCounts).sort((a, b) => b[1] - a[1])[0]?.[0];
-        if (bestId) {
-          const best = meetups.find((m) => m.id === bestId);
-          favoriteSpot = best?.venue || null;
+      // Melhor café: maior média entre as avaliações dele
+      const meetupAvgs = {};
+      myRatings.forEach((r) => {
+        const vals = [r.coffee, r.food, r.atmosphere, r.service, r.value].filter(Boolean);
+        if (vals.length > 0) {
+          const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+          meetupAvgs[r.meetup_id] = avg;
         }
+      });
+      const bestId = Object.entries(meetupAvgs).sort((a, b) => b[1] - a[1])[0]?.[0];
+      if (bestId) {
+        const { data: best } = await supabase.from('meetups').select('venue').eq('id', bestId).single();
+        favoriteSpot = best?.venue || null;
       }
     }
 
-    return {
-      totalMeetups,
-      averageRating,
-      mostAttendances: null,
-      favoriteSpot,
-    };
+    // Café mais frequentado (mais check-ins)
+    let mostFrequented = null;
+    if (myCheckins && myCheckins.length > 0) {
+      const counts = {};
+      myCheckins.forEach((c) => {
+        counts[c.meetup_id] = (counts[c.meetup_id] || 0) + 1;
+      });
+      const topId = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0];
+      if (topId) {
+        const { data: top } = await supabase.from('meetups').select('venue').eq('id', topId).single();
+        mostFrequented = top?.venue || null;
+      }
+    }
+
+    return { totalMeetups, averageRating, favoriteSpot, mostFrequented };
   } catch (err) {
     console.error('Stats error:', err);
-    return { totalMeetups: 0, averageRating: 0, mostAttendances: null, favoriteSpot: null };
+    return { totalMeetups: 0, averageRating: 0, favoriteSpot: null, mostFrequented: null };
   }
 }
 
@@ -421,7 +425,7 @@ export async function acceptInvitation(invitationId, userId) {
 
   if (e1) throw e1;
 
-  // Get the invitation to know the inviter
+  // Get the invitation to know the inviter and meetup
   const { data: invite } = await supabase
     .from('invitations')
     .select('inviter_id, meetup_id')
@@ -431,6 +435,8 @@ export async function acceptInvitation(invitationId, userId) {
   if (invite) {
     // Add bidirectional friendship
     await addFriend(userId, invite.inviter_id);
+    // Auto check-in the user to the meetup
+    await checkIn(invite.meetup_id, userId);
   }
 
   return true;

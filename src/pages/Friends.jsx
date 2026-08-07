@@ -89,7 +89,7 @@ export default function Friends() {
             {friends.map((friend) => (
               <div key={friend.id} className="friend-card">
                 <div className="friend-avatar" style={{ backgroundColor: friend.color || '#E07B4C' }}>
-                  {friend.initial || friend.name?.charAt(0) || '?'}
+                  {friend.initial || friend.name?.charAt(0)?.toUpperCase() || '?'}
                 </div>
                 <div className="friend-info">
                   <span className="friend-name">{friend.name}</span>
