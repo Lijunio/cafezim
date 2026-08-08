@@ -43,49 +43,6 @@ body {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
 }
 
-/* iOS status bar */
-.ios-status-bar {
-  height: 48px;
-  background-color: var(--color-bg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--space-lg);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-text);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.ios-status-bar .time {
-  font-weight: 600;
-}
-
-.ios-status-bar .icons {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-/* iOS home indicator */
-.ios-home-indicator {
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 8px;
-}
-
-.ios-home-indicator .bar {
-  width: 134px;
-  height: 5px;
-  background-color: var(--color-text);
-  border-radius: var(--radius-full);
-  opacity: 0.3;
-}
-
 /* ===== Typography ===== */
 h1, h2, h3, h4, .heading {
   font-family: var(--font-heading);

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import IOSFrame from './components/common/IOSFrame';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
@@ -22,16 +21,14 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/invite/:token" element={<InvitePage />} />
-          <Route element={<IOSFrame />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/today" element={<TodayMeetup />} />
-            <Route path="/history" element={<History />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/meetup/:id" element={<MeetupDetail />} />
-            <Route path="/friends" element={<Friends />} />
-            <Route path="/friend/:id" element={<FriendProfile />} />
-          </Route>
+          <Route path="/home" element={<Home />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/today" element={<TodayMeetup />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/timeline" element={<Timeline />} />
+          <Route path="/meetup/:id" element={<MeetupDetail />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/friend/:id" element={<FriendProfile />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>

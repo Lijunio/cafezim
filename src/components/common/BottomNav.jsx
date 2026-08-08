@@ -86,9 +86,6 @@ export default function BottomNav() {
           );
         })}
       </div>
-      <div className="ios-home-indicator">
-        <div className="bar" />
-      </div>
     </nav>
   );
 }
