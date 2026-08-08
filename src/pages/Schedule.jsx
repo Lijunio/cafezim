@@ -24,7 +24,10 @@ export default function Schedule() {
 
   useEffect(() => {
     if (user) {
-      getFriends(user.id).then(setFriends).catch(() => {});
+      getFriends(user.id).then((data) => {
+        // Filter out self
+        setFriends((data || []).filter((f) => f.id !== user.id));
+      }).catch(() => {});
     }
   }, [user]);
 
