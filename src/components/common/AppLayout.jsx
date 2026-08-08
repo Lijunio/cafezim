@@ -3,9 +3,11 @@ import BottomNav from './BottomNav';
 
 export default function AppLayout() {
   return (
-    <>
-      <Outlet />
+    <div className="app-frame">
+      <div className="app-content">
+        <Outlet />
+      </div>
       <BottomNav />
-    </>
+    </div>
   );
 }
