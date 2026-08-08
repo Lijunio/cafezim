@@ -87,7 +87,7 @@ export default function Friends() {
         ) : (
           <div className="friends-list">
             {friends.map((friend) => (
-              <div key={friend.id} className="friend-card">
+              <div key={friend.id} className="friend-card" onClick={() => navigate(`/friend/${friend.id}`)}>
                 <div className="friend-avatar" style={{ backgroundColor: friend.color || '#E07B4C' }}>
                   {friend.initial || friend.name?.charAt(0)?.toUpperCase() || '?'}
                 </div>

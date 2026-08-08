@@ -1,0 +1,75 @@
+.friend-profile-page {
+  padding: 0 var(--space-md);
+  padding-bottom: var(--space-lg);
+}
+
+.fp-header {
+  padding: var(--space-md) 0;
+}
+
+.fp-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-lg) 0;
+}
+
+.fp-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: var(--space-md);
+}
+
+.fp-name {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.fp-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.fp-highlight {
+  padding: var(--space-md);
+}
+
+.fp-highlight p {
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.fp-highlight p:last-child {
+  margin-bottom: 0;
+}
+
+/* Reuse stat-mini-card from Home */
+.stat-mini-card {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.stat-mini-number {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+.stat-mini-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+}

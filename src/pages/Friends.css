@@ -50,6 +50,12 @@
   background-color: var(--color-card);
   border-radius: var(--radius-md);
   transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.friend-card:active {
+  transform: scale(0.98);
+  background-color: var(--color-bg-warm);
 }
 
 .friend-avatar {

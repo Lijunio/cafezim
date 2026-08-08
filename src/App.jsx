@@ -11,6 +11,7 @@ import MeetupDetail from './pages/MeetupDetail';
 import Timeline from './pages/Timeline';
 import InvitePage from './pages/InvitePage';
 import Friends from './pages/Friends';
+import FriendProfile from './pages/FriendProfile';
 import './styles/global.css';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/meetup/:id" element={<MeetupDetail />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/friend/:id" element={<FriendProfile />} />
           </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>

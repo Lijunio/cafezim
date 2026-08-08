@@ -8,7 +8,7 @@ import './Home.css';
 
 export default function Home() {
   const navigate = useNavigate();
-  const { profile } = useAuth();
+  const { user, profile } = useAuth();
   const [nextMeetup, setNextMeetup] = useState(null);
   const [checkins, setCheckins] = useState([]);
   const [profiles, setProfiles] = useState([]);
